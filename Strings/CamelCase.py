@@ -77,7 +77,15 @@ import re
 def camelcase(s):
 
     return len(re.split('(?=[A-Z])', s))
-  
+
+## SOlution 4:
+
+def camelcase(s):
+    
+    count = 1
+    for i in range(1, len(s) - 1):
+        if (s[i].isupper()):
+            count += 1
   
 if __name__ == '__main__':
 
