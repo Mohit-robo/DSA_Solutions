@@ -5,7 +5,6 @@ Link: https://www.hackerrank.com/challenges/strong-password
 '''
 # Solution 1
 
-
 def contains(chars,word):
     for c in chars:
         if c in word:
@@ -40,6 +39,7 @@ def minimumNumber(n, password):
         val_2 += 1
 
     return max(val_1,val_2)
+
 
  # Solution 2
 
