@@ -84,7 +84,12 @@ def postOrder(root):
     postOrder(p.right)
     print(p.info, end=' ')
 
-
+def traverse_post_order(root):
+    if root is None: 
+        return []
+    return(traverse_post_order(root.left) +
+           traverse_post_order(root.right)+
+           [root.info])
 
 tree = BinarySearchTree()
 t = int(input())
@@ -94,4 +99,4 @@ arr = list(map(int, input().split()))
 for i in range(t):
     tree.create(arr[i])
 
-postOrder(tree.root)
+print(traverse_post_order(tree.root))
