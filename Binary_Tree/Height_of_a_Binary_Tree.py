@@ -87,17 +87,6 @@ class BinarySearchTree:
                 else:
                     break
 
-# Enter your code here. Read input from STDIN. Print output to STDOUT
-'''
-class Node:
-      def __init__(self,info): 
-          self.info = info  
-          self.left = None  
-          self.right = None 
-           
-
-       // this is a node of the tree , which contains info as data, left , right
-'''
 def height(root):
     p = root
 
@@ -110,8 +99,19 @@ def height(root):
         right_height = height(p.right) + 1
 
     return max(left_height,right_height)
-    
-    
+
+## Solution 2: Using Recusrion
+
+def tree_height(node):
+    if node is None:
+        return 0
+    return 1 + max(tree_height(node.left), tree_height(node.right))
+
+def tree_size(node):
+    if node is None:
+        return 0
+    return 1 + tree_size(node.left) + tree_size(node.right)
+
 tree = BinarySearchTree()
 t = int(input())
 
@@ -120,4 +120,5 @@ arr = list(map(int, input().split()))
 for i in range(t):
     tree.create(arr[i])
 
-print(height(tree.root))
+print("The height of Binary Tree is: ",tree_height(tree.root) - 1)
+print("The size of Binary Tree is: ",tree_size(tree.root))
