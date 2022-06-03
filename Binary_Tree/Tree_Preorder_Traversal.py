@@ -85,7 +85,12 @@ def preOrder(root):
     preOrder(p.right)
     print(p.info, end=' ')
 
-
+def traverse_pre_order(node):
+    if node is None: 
+        return []
+    return([node.info] +
+           traverse_pre_order(node.left) +
+           traverse_pre_order(node.right))
 
 tree = BinarySearchTree()
 t = int(input())
@@ -95,4 +100,4 @@ arr = list(map(int, input().split()))
 for i in range(t):
     tree.create(arr[i])
 
-preOrder(tree.root)
+print(traverse_pre_order(tree.root))
