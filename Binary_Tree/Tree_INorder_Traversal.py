@@ -88,8 +88,14 @@ def inOrder(root):
     print(p.info, end=' ')
     inOrder(p.right)
     
+def in_order_traverse(root):
     
-
+    if root is None:
+        return []
+    
+    return (in_order_traverse(root.left)+
+            [root.info] +
+            in_order_traverse(root.right))
 
 tree = BinarySearchTree()
 t = int(input())
@@ -99,4 +105,4 @@ arr = list(map(int, input().split()))
 for i in range(t):
     tree.create(arr[i])
 
-inOrder(tree.root)
+print(in_order_traverse(tree.root))
