@@ -1,4 +1,7 @@
 ## Class to add users
+from tkinter.tix import Tree
+
+
 class User:
     def __init__(self, username, name, email):
         self.username = username
@@ -229,6 +232,14 @@ class TreeNode:
         if target is not None:
             target.value = value
 
+    ## The nodes can be listed in sorted order by performing an inorder traversal of the BST.
+
+    def list_all(self):
+        if self is None:
+            return []
+        return TreeNode.list_all(self.left) + [(self.key, self.value)] + TreeNode.list_all(self.right)
+
+
     #Balanced Binary Trees
     '''
     Here's a recursive strategy:
@@ -245,3 +256,29 @@ class TreeNode:
         balanced = balanced_l and balanced_r and abs(height_l - height_r) <=1
         height = 1 + max(height_l,height_r)
         return balanced, height
+
+    '''
+        We create a balanced BST from a sorted list/array of key-value pairs.
+        We can use a recursive strategy here, turning the middle element of the list into the root, 
+        and recursively creating left and right subtrees.
+    
+    '''
+
+    def make_balanced_bst(data, lo=0, hi=None, parent=None):
+        if hi is None:
+            hi = len(data) - 1
+        if lo > hi:
+            return None
+        
+        mid = (lo + hi) // 2
+        key, value = data[mid]
+
+        root = TreeNode(key, value)
+        root.parent = parent
+        root.left = TreeNode.make_balanced_bst(data, lo, mid-1, root)
+        root.right = TreeNode.make_balanced_bst(data, mid+1, hi, root)
+        
+        return root
+
+    def balance_bst(self):
+        return TreeNode.make_balanced_bst(TreeNode.list_all(self))
