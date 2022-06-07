@@ -1,10 +1,11 @@
+from tkinter.tix import Tree
 from BT_main import User,UserDatabase,TreeNode,parse_tuple
 
 '''   MAKE SURE TO ADD PRINT FUNCTION TO THE OPERTAIONS      '''
 
 ## Some example inputs & outputs.
 '''
-aaash = User('aakash', 'Aakash Rai', 'aakash@example.com')
+aakash = User('aakash', 'Aakash Rai', 'aakash@example.com')
 biraj = User('biraj', 'Biraj Das', 'biraj@example.com')
 hemanth = User('hemanth', 'Hemanth Jain', 'hemanth@example.com')
 jadhesh = User('jadhesh', 'Jadhesh Verma', 'jadhesh@example.com')
@@ -12,6 +13,8 @@ siddhant = User('siddhant', 'Siddhant Sinha', 'siddhant@example.com')
 sonaksh = User('sonaksh', 'Sonaksh Kumar', 'sonaksh@example.com')
 vishal = User('vishal', 'Vishal Goel', 'vishal@example.com')
 mohit = User('mohit', 'Mohit Goel', 'mohit@example.com')
+
+users = [aakash, biraj, hemanth, jadhesh, siddhant, sonaksh, vishal]
 '''
 
 ## Uncomment to add,find and update user data
@@ -109,5 +112,20 @@ node_hemant = tree3.find('hemanth')
 node_hemant.key, node_hemant.value
 
 tree3.is_balanced()
+
+## Balancing unbalanced trees. 
+
+data = [(user.username, user) for user in users]
+data
+
+tree1 = None
+
+for user in users:
+    tree1 = TreeNode.insert(tree1, user.username, user)  ## Here we enter nodes alphabeltical wise, this ,akes it an unbalanced tree
+
+tree1.display_keys()
+
+tree2 = tree1.balance_bst()
+tree2.display_keys()
 
 '''
