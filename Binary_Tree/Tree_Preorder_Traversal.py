@@ -77,6 +77,8 @@ self.left (the left child of the node)
 self.right (the right child of the node)
 self.info (the value of the node)
 """
+## Recursive Method
+
 def preOrder(root):
     p = root
     if p is None:
@@ -91,6 +93,27 @@ def traverse_pre_order(node):
     return([node.info] +
            traverse_pre_order(node.left) +
            traverse_pre_order(node.right))
+
+
+def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+   stack = [root]
+   res = []
+   while stack:
+       node = stack.pop()
+       if node:
+           stack.append(node.right)
+           stack.append(node.left)
+           stack.append(node)
+       else:
+           if stack:
+               node = stack.pop()
+               res.append(node.val)
+    
+        return res
+    
+solution = Solution()
+lst = (solution.inorderTraversal(TreeNode()))
 
 tree = BinarySearchTree()
 t = int(input())
