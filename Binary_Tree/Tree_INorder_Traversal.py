@@ -79,6 +79,8 @@ self.left (the left child of the node)
 self.right (the right child of the node)
 self.info (the value of the node)
 """
+
+## Recursive Method
 def inOrder(root):
     #Write your code here
     p = root
@@ -97,6 +99,26 @@ def in_order_traverse(root):
             [root.info] +
             in_order_traverse(root.right))
 
+## Iterative Method
+
+def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+   stack = [root]
+   res = []
+   while stack:
+       node = stack.pop()
+       if node:
+           stack.append(node.right)
+           stack.append(node)
+           stack.append(node.left)
+       else:
+           if stack:
+               node = stack.pop()
+               res.append(node.val)
+
+   return res
+    
+
 tree = BinarySearchTree()
 t = int(input())
 
@@ -106,3 +128,4 @@ for i in range(t):
     tree.create(arr[i])
 
 print(in_order_traverse(tree.root))
+print(inorderTraversal(arr)
